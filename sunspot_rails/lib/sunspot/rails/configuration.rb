@@ -196,7 +196,11 @@ module Sunspot #:nodoc:
       end
       
       def pid_path
-        @pids_path ||= user_configuration_from_key('solr', 'pid_path') || File.join(::Rails.root, 'solr', 'pids', ::Rails.env)
+        @pids_path ||= user_configuration_from_key('solr', 'pid_path') || File.join(::Rails.root, 'tmp', 'pids')
+      end
+      
+      def pid_filename
+        @pid_filename ||= user_configuration_from_key('solr', 'pid_filename') || "sunspot-solr-#{:Rails.root}.pid"
       end
       
       # 

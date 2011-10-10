@@ -41,14 +41,14 @@ module Sunspot
       # Directory in which to store PID files
       #
       def pid_dir
-        File.join(::Rails.root, 'tmp', 'pids')
+        configuration.pid_path
       end
 
       # 
       # Name of the PID file
       #
       def pid_file
-        "sunspot-solr-#{::Rails.env}.pid"
+        configuration.pid_filename
       end
 
       # 
