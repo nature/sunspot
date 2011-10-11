@@ -188,11 +188,19 @@ module Sunspot #:nodoc:
       # String:: log_dir
       #
       def log_file
-        @log_file ||= (user_configuration_from_key('solr', 'log_file') || default_log_file_location )
+        @log_file ||= if user_configuration_from_key('solr', 'log_file')
+                        ::Rails.root.join(user_configuration_from_key('solr', 'log_file'))
+                      else 
+                        default_log_file_location
+                      end
       end
 
       def data_path
-        @data_path ||= user_configuration_from_key('solr', 'data_path') || File.join(::Rails.root, 'solr', 'data', ::Rails.env)
+        @data_path ||= if user_configuration_from_key('solr', 'data_path')
+                         ::Rails.root.join(user_configuration_from_key('solr', 'data_path'))
+                       else 
+                         File.join(::Rails.root, 'solr', 'data', ::Rails.env)
+                       end
       end
       
       def pid_path
