@@ -208,7 +208,7 @@ module Sunspot #:nodoc:
       end
       
       def pid_filename
-        @pid_filename ||= user_configuration_from_key('solr', 'pid_filename') || "sunspot-solr-#{:Rails.root}.pid"
+        @pid_filename ||= user_configuration_from_key('solr', 'pid_filename') || "sunspot-solr-#{::Rails.env}.pid"
       end
       
       # 
